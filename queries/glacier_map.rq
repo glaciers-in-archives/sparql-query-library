@@ -1,0 +1,13 @@
+#title: Map of glaciers with number of works
+#tags: map
+
+PREFIX schema: <https://schema.org/>
+
+SELECT (COUNT(?record) AS ?count) ?name ?lat ?lon ?glacier WHERE {
+  ?glacier a schema:Landform ;
+           schema:name ?name ;
+           schema:longitude ?lon ;
+           schema:latitude ?lat .
+  ?record schema:spatial ?glacier ;
+          schema:provider ?provider .
+} GROUP BY ?name ?lat ?lon ?glacier

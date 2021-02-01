@@ -1,0 +1,11 @@
+#title: Glacier content statitics
+#tags: pie chart
+
+PREFIX schema: <https://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?label (COUNT(?label) AS ?count) WHERE {
+  ?record a/skos:broader* <https://www.glaciersinarchives.org/id/type/work> .
+  ?record schema:spatial ?landform .
+  ?landform schema:name ?label
+} GROUP BY ?label

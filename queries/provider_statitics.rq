@@ -1,0 +1,6 @@
+#title: Provider statitics
+#tags: provider,pie chart
+
+SELECT ?label (COUNT(?label) AS ?count) WHERE {
+  ?record schema:provider ?label
+} GROUP BY ?label

@@ -1,0 +1,18 @@
+#title: Glaciers by continent statitics
+#tags: pie chart,wikidata,federated
+
+PREFIX schema: <https://schema.org/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+
+SELECT ?label (COUNT(?label) AS ?count) WHERE {
+  ?landform a schema:Landform ;
+            rdfs:seeAlso ?wd .
+
+  SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
+    ?wd wdt:P30 ?continent .
+    ?continent rdfs:label ?label .
+    FILTER (lang(?label) = "en")
+  }
+} GROUP BY ?label
