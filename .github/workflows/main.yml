@@ -1,0 +1,22 @@
+name: Build and deploy library API
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build JSON file from 
+        uses: actions/setup-python@v2.2.1
+        with:
+          python-version: 3.8
+      - run: python build.py
+      - name: Deploy generated JSON file to Github pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          exclude_assets: '.gitkeep'
