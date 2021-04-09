@@ -1,0 +1,8 @@
+#title: Number of total works
+#tags: basic
+
+PREFIX schema: <https://schema.org/>
+
+SELECT (COUNT(?s) AS ?nWorks) WHERE {
+ ?s a schema:CreativeWork .
+}
