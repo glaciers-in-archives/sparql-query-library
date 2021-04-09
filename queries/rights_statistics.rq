@@ -1,10 +1,10 @@
 #title: Rights statistics
 #tags: rights,pie chart
 
-PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX schema: <https://schema.org/>
 
 SELECT ?label (COUNT(?label) AS ?count) WHERE {
-  ?record a/skos:broader* <https://www.glaciersinarchives.org/id/type/work> .
-  ?record dcterms:rights ?label .
+  ?record schema:additionalType/skos:broader* <https://www.glaciersinarchives.org/concept/type/work> .
+  ?record schema:license ?label .
 } GROUP BY ?label

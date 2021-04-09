@@ -8,7 +8,7 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 
 SELECT ?label (COUNT(?label) AS ?count) WHERE {
   ?landform a schema:Landform ;
-            rdfs:seeAlso ?wd .
+            schema:sameAs ?wd .
 
   SERVICE <https://query.wikidata.org/bigdata/namespace/wdq/sparql> {
     ?wd wdt:P30 ?continent .
